@@ -11,37 +11,34 @@ public class RemoveFoundPatientTests extends TestBase {
     // 3. поиск пациента
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isElementPresent(By.xpath("//h2[contains(.,'Autorisierung')]"))) {
-            driver.findElement(By.xpath("//button[contains(.,'Abmelden')]"));
+        if (!isLoginLinkPresent()) {
+            clickOnSignoutButton();
         } else {
             // Login
-            type(By.xpath("//input[@placeholder='Login']"), "qwe");
-            type(By.xpath("//input[@placeholder='Password']"), "qwe123");
-            click(By.xpath("//button[contains(.,'Weiter')]"));
-            click(By.xpath("//input[@value='chirurgisch']"));
-            click(By.xpath("//button[contains(.,'Log In')]"));
-            assertTrueElement(By.xpath("//button[contains(.,'Abmelden')]"));
+            fillLoginForm("qwe", "qwe123", "//input[@value='chirurgisch']");
+            clickOnLoginButton();
+            isLoggedUser();
 
             // find Patient
-            click(By.xpath("//button[contains(.,'Erstellen Sie eine Bestellung')]"));
-            assertTrueElement(By.xpath("//h2[contains(.,'Neue Bestellung')]"));
-            click(By.xpath("//button[contains(.,'Wählen Sie einen Patient aus')]"));
-            assertTrueElement(By.xpath("//h3[contains(.,'Wählen Sie einen Patient aus')]"));
-            type(By.xpath("//input[@name='name']"), "Emma Weber");
-            click(By.xpath("//button[contains(.,'Finden')]"));
-            assertTrueElement(By.className("css-16uxjix"));
-            click(By.xpath("//p[contains(.,'Wählen')]"));
-            assertTrueElement(By.className("css-l2t4tz"));
+            clickOnNewRequstButton();
+            isNewRequestPresent();
+            clickOnFindPatientButton();
+            isModalFindPatientPresent();
+            fillFindPatient("Emma Weber");
+            clickOnFindButton();
+            isFoundPatientsPresent();
+            clickOnSelectButton();
+            isPatientPresent();
         }
     }
 
     @Test
     public void removePatientTest() {
         // клик: кнопка "Удалить пациента"
-        click(By.name("ClearButton"));
+        clickOnRemoveFoundPatientButton();
 
         // проверка: информации о пациенте нет
-        assertTrueElement(By.xpath("//button[contains(.,'Wählen Sie einen Patient aus')]"));
+        isFindPatientButtonPresent();
     }
 }
 
