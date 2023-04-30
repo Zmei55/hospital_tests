@@ -164,4 +164,8 @@ public class TestBase {
     public void isFindPatientButtonPresent() {
         assertTrueElement(By.xpath("//button[@aria-label='find patient']"));
     }
+
+    public void isPatientNotFound() {
+        assertTrueElement(By.className("css-1xpd0js"));
+    }
 }
