@@ -54,13 +54,13 @@ public class FindPatientTests extends TestBase {
         assertTrueElement(By.className("css-l2t4tz"));
 
         // клик: кнопка "Доп.инфа" чтоб открылась
-        click(By.cssSelector(".css-19v2pru:nth-child(1)"));
+        click(By.name("InfoButton"));
 
         // проверка: блок с дополнительной информацией пациента появился
         assertTrueElement(By.xpath("//h4[contains(.,'Wohnort')]"));
 
         // клик: кнопка "Доп.инфа" чтоб закрылась
-        click(By.cssSelector(".css-19v2pru:nth-child(1)"));
+        click(By.name("InfoButton"));
 
         // проверка: блок с дополнительной информацией пациента исчез
         assertFalseElement(By.xpath("//h4[contains(.,'Wohnort')]"));
