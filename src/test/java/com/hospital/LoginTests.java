@@ -13,7 +13,7 @@ public class LoginTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(priority = 1)
     public void loginUserPositiveTest() {
         // проверка, наличие логин-формы
         assertTrueElement(By.xpath("//h2[contains(.,'Autorisierung')]"));
@@ -35,7 +35,7 @@ public class LoginTests extends TestBase {
         assertTrueElement(By.xpath("//button[contains(.,'Abmelden')]"));
     }
 
-    @Test
+    @Test(priority = 2)
     public void loginUserWithInvalidLoginNegativeTest() {
         // проверка, наличие логин-формы
         assertTrueElement(By.xpath("//h2[contains(.,'Autorisierung')]"));
@@ -60,7 +60,7 @@ public class LoginTests extends TestBase {
         click(By.xpath("//button[contains(.,'Ok')]"));
     }
 
-    @Test
+    @Test(priority = 3)
     public void loginUserWithInvalidPasswordNegativeTest() {
         // проверка, наличие логин-формы
         assertTrueElement(By.xpath("//h2[contains(.,'Autorisierung')]"));
@@ -85,7 +85,7 @@ public class LoginTests extends TestBase {
         click(By.xpath("//button[contains(.,'Ok')]"));
     }
 
-    @Test
+    @Test(priority = 4)
     public void loginUserWithInvalidStationNegativeTest() {
         // проверка, наличие логин-формы
         assertTrueElement(By.xpath("//h2[contains(.,'Autorisierung')]"));
