@@ -65,6 +65,7 @@ public class TestBase {
         Assert.assertTrue(isElementPresent(locator));
     }
 
+    // метод - проверка отсутствие элемента
     public void assertFalseElement(By locator) {
         Assert.assertFalse(isElementPresent(locator));
     }
