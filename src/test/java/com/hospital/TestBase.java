@@ -24,7 +24,7 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // установка не явного времени ожидания (ждёт не зависимо от результата)
     }
 
-    @AfterMethod(enabled = true)
+    @AfterMethod(enabled = false)
     public void tearDown() {
         driver.quit(); // закрывает браузер
     }
@@ -61,7 +61,11 @@ public class TestBase {
     }
 
     // метод - проверка наличия элемента
-    protected void assertTrueElement(By locator) {
+    public void assertTrueElement(By locator) {
         Assert.assertTrue(isElementPresent(locator));
+    }
+
+    public void assertFalseElement(By locator) {
+        Assert.assertFalse(isElementPresent(locator));
     }
 }
