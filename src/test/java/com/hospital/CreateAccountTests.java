@@ -8,8 +8,8 @@ public class CreateAccountTests extends TestBase {
     // пользователь не зарегистрирован
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isElementPresent(By.xpath("//a[contains(.,'LOGIN')]"))) {
-            driver.findElement(By.xpath("//button[contains(.,'Sign Out')]"));
+        if (!isLoginLinkPresent()) {
+            clickOnSignoutButton();
         }
     }
 
