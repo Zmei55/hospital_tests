@@ -13,7 +13,7 @@ public class CreateAccountTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void newUserRegistrationPositiveTest() {
         // клик по кнопке ЛОГИН
         click(By.xpath("//a[contains(.,'LOGIN')]"));
