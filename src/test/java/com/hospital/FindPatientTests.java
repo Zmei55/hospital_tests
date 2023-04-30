@@ -60,4 +60,14 @@ public class FindPatientTests extends TestBase {
         isNotSecondaryInfoPresent();
     }
 
+    @Test
+    public void findPatientWithInvalidNameTest() {
+        clickOnNewRequstButton();
+        isNewRequestPresent();
+        clickOnFindPatientButton();
+        isModalFindPatientPresent();
+        fillFindPatient("Garry Osborn");
+        clickOnFindButton();
+        isPatientNotFound();
+    }
 }
