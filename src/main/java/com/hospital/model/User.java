@@ -1,9 +1,9 @@
-package com.hospital;
+package com.hospital.model;
 
 public class User {
     private String logName;
     private String password;
-    private String stationXpathLocator;
+    private String station;
 
     public String getLogName() {
         return logName;
@@ -13,8 +13,8 @@ public class User {
         return password;
     }
 
-    public String getStationXpathLocator() {
-        return stationXpathLocator;
+    public String getStation() {
+        return station;
     }
 
     public User setLogName(String logName) {
@@ -27,8 +27,8 @@ public class User {
         return this;
     }
 
-    public User setStationXpathLocator(String stationXpathLocator) {
-        this.stationXpathLocator = stationXpathLocator;
+    public User setStation(String station) {
+        this.station = station;
         return this;
     }
 
@@ -37,7 +37,7 @@ public class User {
         return "User{" +
                 "logName='" + logName + '\'' +
                 ", password='" + password + '\'' +
-                ", stationXpathLocator='" + stationXpathLocator + '\'' +
+                ", stationXpathLocator='" + station + '\'' +
                 '}';
     }
 }
