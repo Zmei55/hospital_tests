@@ -1,6 +1,5 @@
 package com.hospital;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -8,101 +7,93 @@ public class LoginTests extends TestBase {
     // пользователь не зарегистрирован
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isLoginLinkPresent()) {
-            clickOnSignoutButton();
+        if (!app.isLoginLinkPresent()) {
+            app.clickOnSignoutButton();
         }
     }
 
     @Test(priority = 1)
     public void loginUserPositiveTest() {
         // проверка, наличие логин-формы
-        isLoginFormPresent();
+        app.isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm(new User()
+        app.fillLoginForm(new User()
                 .setLogName("qwe")
                 .setPassword("qwe123")
                 .setStationXpathLocator("//input[@value='chirurgisch']")
         );
 
         // клик по кнопке "Логин"
-        clickOnLoginButton();
+        app.clickOnLoginButton();
 
         // проверка, залогинился ли пользователь
-        isLoggedUser();
+        app.isLoggedUser();
     }
 
     @Test(priority = 2)
     public void loginUserWithInvalidLoginNegativeTest() {
         // проверка, наличие логин-формы
-        isLoginFormPresent();
+        app.isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm(new User()
+        app.fillLoginForm(new User()
                 .setLogName("asd")
                 .setPassword("qwe123")
                 .setStationXpathLocator("//input[@value='chirurgisch']")
         );
 
         // клик по кнопке "Логин"
-        clickOnLoginButton();
+        app.clickOnLoginButton();
 
         // проверка, наличия ошибки
-        isModalErrorPresent();
+        app.isModalErrorPresent();
 
         // клик по кнопке Ок
-        clickOnOkButton();
+        app.clickOnOkButton();
     }
 
     @Test(priority = 3)
     public void loginUserWithInvalidPasswordNegativeTest() {
         // проверка, наличие логин-формы
-        isLoginFormPresent();
+        app.isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm(new User()
+        app.fillLoginForm(new User()
                 .setLogName("qwe")
                 .setPassword("asd123")
                 .setStationXpathLocator("//input[@value='chirurgisch']")
         );
 
         // клик по кнопке "Логин"
-        clickOnLoginButton();
+        app.clickOnLoginButton();
 
         // проверка, наличия ошибки
-        isModalErrorPresent();
+        app.isModalErrorPresent();
 
         // клик по кнопке Ок
-        clickOnOkButton();
+        app.clickOnOkButton();
     }
 
     @Test(priority = 4)
     public void loginUserWithInvalidStationNegativeTest() {
         // проверка, наличие логин-формы
-        isLoginFormPresent();
+        app.isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm(new User()
+        app.fillLoginForm(new User()
                 .setLogName("qwe")
                 .setPassword("qwe123")
                 .setStationXpathLocator("//input[@value='neurologisch']")
         );
 
         // клик по кнопке "Логин"
-        clickOnLoginButton();
+        app.clickOnLoginButton();
 
         // проверка, наличия ошибки
-        isModalErrorPresent();
+        app.isModalErrorPresent();
 
         // клик по кнопке Ок
-        clickOnOkButton();
-    }
-
-    private void clickOnOkButton() {
-        click(By.xpath("//button[contains(.,'Ok')]"));
-    }
-
-    private void isModalErrorPresent() {
-        assertTrueElement(By.xpath("//p[contains(.,'Benutzerdaten wurden falsch eingegeben')]"));
+        app.clickOnOkButton();
     }
 }

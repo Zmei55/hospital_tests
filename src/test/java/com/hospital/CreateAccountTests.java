@@ -8,30 +8,30 @@ public class CreateAccountTests extends TestBase {
     // пользователь не зарегистрирован
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isLoginLinkPresent()) {
-            clickOnSignoutButton();
+        if (!app.isLoginLinkPresent()) {
+            app.clickOnSignoutButton();
         }
     }
 
     @Test(enabled = false)
     public void newUserRegistrationPositiveTest() {
         // клик по кнопке ЛОГИН
-        click(By.xpath("//a[contains(.,'LOGIN')]"));
+        app.click(By.xpath("//a[contains(.,'LOGIN')]"));
 
         // проверка наличия формы регистрации
-        assertTrueElement(By.className("login_login__3EHKB"));
+        app.assertTrueElement(By.className("login_login__3EHKB"));
 
         // заполнить форму регистрации
-        type(By.cssSelector("[placeholder='Email']"), "e-mail");
+        app.type(By.cssSelector("[placeholder='Email']"), "e-mail");
 
-        type(By.cssSelector("[placeholder='Password']"), "password");
+        app.type(By.cssSelector("[placeholder='Password']"), "password");
         // проверить что поля правильно заполнились
 
         // клик по кнопке РЕГИСТРАЦИИ
-        click(By.xpath("//button[contains(.,'Registration')]"));
+        app.click(By.xpath("//button[contains(.,'Registration')]"));
 
         // проверка наличия кнопки ЛОГАУТ
-        assertTrueElement(By.xpath("//button[contains(.,'Sign Out')]"));
+        app.assertTrueElement(By.xpath("//button[contains(.,'Sign Out')]"));
     }
 
 }

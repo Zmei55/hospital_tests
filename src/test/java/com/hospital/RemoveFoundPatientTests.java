@@ -10,38 +10,38 @@ public class RemoveFoundPatientTests extends TestBase {
     // 3. поиск пациента
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isLoginLinkPresent()) {
-            clickOnSignoutButton();
+        if (!app.isLoginLinkPresent()) {
+            app.clickOnSignoutButton();
         } else {
             // Login
-            fillLoginForm(new User()
+            app.fillLoginForm(new User()
                     .setLogName("qwe")
                     .setPassword("qwe123")
                     .setStationXpathLocator("//input[@value='chirurgisch']")
             );
-            clickOnLoginButton();
-            isLoggedUser();
+            app.clickOnLoginButton();
+            app.isLoggedUser();
 
             // find Patient
-            clickOnNewRequstButton();
-            isNewRequestPresent();
-            clickOnFindPatientButton();
-            isModalFindPatientPresent();
-            fillFindPatient(new Patient().setName("Emma Weber"));
-            clickOnFindButton();
-            isFoundPatientsPresent();
-            clickOnSelectButton();
-            isPatientPresent();
+            app.clickOnNewRequstButton();
+            app.isNewRequestPresent();
+            app.clickOnFindPatientButton();
+            app.isModalFindPatientPresent();
+            app.fillFindPatient(new Patient().setName("Emma Weber"));
+            app.clickOnFindButton();
+            app.isFoundPatientsPresent();
+            app.clickOnSelectButton();
+            app.isPatientPresent();
         }
     }
 
     @Test
     public void removePatientTest() {
         // клик: кнопка "Удалить пациента"
-        clickOnRemoveFoundPatientButton();
+        app.clickOnRemoveFoundPatientButton();
 
         // проверка: информации о пациенте нет
-        isFindPatientButtonPresent();
+        app.isFindPatientButtonPresent();
     }
 }
 

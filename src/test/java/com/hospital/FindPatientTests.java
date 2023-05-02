@@ -9,69 +9,69 @@ public class FindPatientTests extends TestBase {
         // 2. логинемся
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!isLoginLinkPresent()) {
-            clickOnSignoutButton();
+        if (!app.isLoginLinkPresent()) {
+            app.clickOnSignoutButton();
         } else {
-            fillLoginForm(new User()
+            app.fillLoginForm(new User()
                     .setLogName("qwe")
                     .setPassword("qwe123")
                     .setStationXpathLocator("//input[@value='chirurgisch']")
             );
-            clickOnLoginButton();
-            isLoggedUser();
+            app.clickOnLoginButton();
+            app.isLoggedUser();
         }
     }
 
     @Test
     public void findPatientPositiveTest() {
         // клик: "Новый запрос"
-        clickOnNewRequstButton();
+        app.clickOnNewRequstButton();
 
         // проверка: находимся на странице "Новый запрос"
-        isNewRequestPresent();
+        app.isNewRequestPresent();
 
         // клик: "Выбрать пациента"
-        clickOnFindPatientButton();
+        app.clickOnFindPatientButton();
 
         // проверка: находимся в модальном окне поиска пациента
-        isModalFindPatientPresent();
+        app.isModalFindPatientPresent();
 
         // ввод: данные пациента
-        fillFindPatient(new Patient().setName("Emma Weber"));
+        app.fillFindPatient(new Patient().setName("Emma Weber"));
 
         // клик: кнопка "Поиск"
-        clickOnFindButton();
+        app.clickOnFindButton();
 
         // проверка: пациент нашёлся
-        isFoundPatientsPresent();
+        app.isFoundPatientsPresent();
 
         // выбрать пациента (клик: "Выбрать")
-        clickOnSelectButton();
+        app.clickOnSelectButton();
 
         // проверка: блок с информацией пациента появился
-        isPatientPresent();
+        app.isPatientPresent();
 
         // клик: кнопка "Доп.инфа" чтоб открылась
-        clickOnInfoButton();
+        app.clickOnInfoButton();
 
         // проверка: блок с дополнительной информацией пациента появился
-        isSecondaryInfoPresent();
+        app.isSecondaryInfoPresent();
 
         // клик: кнопка "Доп.инфа" чтоб закрылась
-        clickOnInfoButton();
+        app.clickOnInfoButton();
 
         // проверка: блок с дополнительной информацией пациента исчез
-        isNotSecondaryInfoPresent();
+        app.isNotSecondaryInfoPresent();
     }
 
     @Test
     public void findPatientWithInvalidNameTest() {
-        clickOnNewRequstButton();
-        isNewRequestPresent();
-        clickOnFindPatientButton();
-        isModalFindPatientPresent();
-        fillFindPatient(new Patient().setName("Garry Osborn"));
-        clickOnFindButton();
-        isPatientNotFound();
+        app.clickOnNewRequstButton();
+        app.isNewRequestPresent();
+        app.clickOnFindPatientButton();
+        app.isModalFindPatientPresent();
+        app.fillFindPatient(new Patient().setName("Garry Osborn"));
+        app.clickOnFindButton();
+        app.isPatientNotFound();
     }
 }
