@@ -1,6 +1,5 @@
 package com.hospital;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,7 +14,11 @@ public class RemoveFoundPatientTests extends TestBase {
             clickOnSignoutButton();
         } else {
             // Login
-            fillLoginForm("qwe", "qwe123", "//input[@value='chirurgisch']");
+            fillLoginForm(new User()
+                    .setLogName("qwe")
+                    .setPassword("qwe123")
+                    .setStationXpathLocator("//input[@value='chirurgisch']")
+            );
             clickOnLoginButton();
             isLoggedUser();
 
@@ -24,7 +27,7 @@ public class RemoveFoundPatientTests extends TestBase {
             isNewRequestPresent();
             clickOnFindPatientButton();
             isModalFindPatientPresent();
-            fillFindPatient("Emma Weber");
+            fillFindPatient(new Patient().setName("Emma Weber"));
             clickOnFindButton();
             isFoundPatientsPresent();
             clickOnSelectButton();

@@ -12,7 +12,11 @@ public class FindPatientTests extends TestBase {
         if (!isLoginLinkPresent()) {
             clickOnSignoutButton();
         } else {
-            fillLoginForm("qwe", "qwe123", "//input[@value='chirurgisch']");
+            fillLoginForm(new User()
+                    .setLogName("qwe")
+                    .setPassword("qwe123")
+                    .setStationXpathLocator("//input[@value='chirurgisch']")
+            );
             clickOnLoginButton();
             isLoggedUser();
         }
@@ -33,7 +37,7 @@ public class FindPatientTests extends TestBase {
         isModalFindPatientPresent();
 
         // ввод: данные пациента
-        fillFindPatient("Emma Weber");
+        fillFindPatient(new Patient().setName("Emma Weber"));
 
         // клик: кнопка "Поиск"
         clickOnFindButton();
@@ -66,7 +70,7 @@ public class FindPatientTests extends TestBase {
         isNewRequestPresent();
         clickOnFindPatientButton();
         isModalFindPatientPresent();
-        fillFindPatient("Garry Osborn");
+        fillFindPatient(new Patient().setName("Garry Osborn"));
         clickOnFindButton();
         isPatientNotFound();
     }

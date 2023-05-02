@@ -19,7 +19,11 @@ public class LoginTests extends TestBase {
         isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm("qwe", "qwe123", "//input[@value='chirurgisch']");
+        fillLoginForm(new User()
+                .setLogName("qwe")
+                .setPassword("qwe123")
+                .setStationXpathLocator("//input[@value='chirurgisch']")
+        );
 
         // клик по кнопке "Логин"
         clickOnLoginButton();
@@ -34,7 +38,11 @@ public class LoginTests extends TestBase {
         isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm("asd", "qwe123", "//input[@value='chirurgisch']");
+        fillLoginForm(new User()
+                .setLogName("asd")
+                .setPassword("qwe123")
+                .setStationXpathLocator("//input[@value='chirurgisch']")
+        );
 
         // клик по кнопке "Логин"
         clickOnLoginButton();
@@ -52,7 +60,11 @@ public class LoginTests extends TestBase {
         isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm("qwe", "asd123", "//input[@value='chirurgisch']");
+        fillLoginForm(new User()
+                .setLogName("qwe")
+                .setPassword("asd123")
+                .setStationXpathLocator("//input[@value='chirurgisch']")
+        );
 
         // клик по кнопке "Логин"
         clickOnLoginButton();
@@ -70,7 +82,11 @@ public class LoginTests extends TestBase {
         isLoginFormPresent();
 
         // заполнение логин и пароль
-        fillLoginForm("qwe", "qwe123", "//input[@value='neurologisch']");
+        fillLoginForm(new User()
+                .setLogName("qwe")
+                .setPassword("qwe123")
+                .setStationXpathLocator("//input[@value='neurologisch']")
+        );
 
         // клик по кнопке "Логин"
         clickOnLoginButton();

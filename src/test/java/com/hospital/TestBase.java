@@ -16,6 +16,7 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() {
+        System.err.close(); // закрывает системные ошибки/предупреждения (в нач каждого теста)
         ChromeOptions options = new ChromeOptions();
         options.addArguments("remote-allow-origins=*");
         driver = new ChromeDriver(options); // подключение и инициализация драйвера
@@ -50,9 +51,11 @@ public class TestBase {
 
     // ввод текста в поле ввода
     public void type(By locator, String text) {
-        driver.findElement(locator).click();
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(text);
+        if (text != null) {
+            driver.findElement(locator).click();
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
+        }
     }
 
     // проверка наличия элемента
@@ -71,15 +74,19 @@ public class TestBase {
     }
 
     // заполнить форму логина
-    public void fillLoginForm(String email, String password, String station) {
-        type(By.xpath("//input[@placeholder='Login']"), email);
-        type(By.xpath("//input[@placeholder='Password']"), password);
+    public void fillLoginForm(User user) {
+        type(By.xpath("//input[@placeholder='Login']"), user.getLogName());
+        type(By.xpath("//input[@placeholder='Password']"), user.getPassword());
 
         // клик на кнопку "далее"
         click(By.xpath("//button[contains(.,'Weiter')]"));
 
         // выбор стационара (клик по радио-баттон)
-        click(By.xpath(station));
+        click(By.xpath(user.getStationXpathLocator()));
+    }
+
+    public void fillFindPatient(Patient patient) {
+        type(By.xpath("//input[@name='name']"), patient.getName());
     }
 
     // клик
@@ -145,12 +152,6 @@ public class TestBase {
 
     public void clickOnFindPatientButton() {
         click(By.xpath("//button[contains(.,'Wählen Sie einen Patient aus')]"));
-    }
-
-    public void fillFindPatient(String name) {
-        type(By.xpath("//input[@name='name']"), name);
-//        type(By.xpath("//input[@name='birthDate']"), "26051968");
-//        type(By.xpath("//input[@name='cardNumber']"), "123456789");
     }
 
     public void clickOnFindButton() {
