@@ -13,6 +13,7 @@ settings.gradle
 .classpath
 .idea
 out/
+screenshots/
 .DS_Store
 *.bat
 gradlew

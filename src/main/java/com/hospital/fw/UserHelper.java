@@ -47,4 +47,8 @@ public class UserHelper extends BaseHelper {
     public void isModalErrorPresent() {
         assertTrueElement(By.xpath("//p[contains(.,'Benutzerdaten wurden falsch eingegeben')]"));
     }
+
+    public boolean isLoggedUserBool() {
+        return isElementPresent(By.xpath("//button[contains(.,'Abmelden')]"));
+    } // пользователь залогинен
 }

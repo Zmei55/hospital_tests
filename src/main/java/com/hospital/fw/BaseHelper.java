@@ -1,9 +1,11 @@
 package com.hospital.fw;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import com.google.common.io.Files;
+import org.openqa.selenium.*;
 import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BaseHelper {
     WebDriver driver;
@@ -59,4 +61,17 @@ public class BaseHelper {
             throw new RuntimeException(e);
         }
     } // пауза между методами
+
+    public String takeScreenshot() {
+        File tmp =  ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); // создаёт временный файл
+        File screenshot = new File("screenshots/screen" + System.currentTimeMillis() + ".png"); // создаёт постоянный файл
+
+        try {
+            Files.copy(tmp, screenshot); // копирует скрин из врем в постоянный файл
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return screenshot.getAbsolutePath(); // указывает путь в логах
+    } // делает скриншот, если тест выдаёт ошибку
 }

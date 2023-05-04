@@ -23,6 +23,7 @@ public class LoginTests extends TestBase {
         ); // заполнение логин и пароль
         app.getUser().clickOnLoginButton(); // клик по кнопке "Логин"
         app.getUser().isLoggedUser(); // проверка, залогинился ли пользователь
+        logger.info("User logged in. Actual result: " + app.getUser().isLoggedUserBool() + ". Expected result: true");
     }
 
     @Test(priority = 2)
