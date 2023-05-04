@@ -1,6 +1,7 @@
 package com.tests;
 
 import com.hospital.fw.ApplicationManager;
+import org.openqa.selenium.remote.Browser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
@@ -11,7 +12,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class TestBase {
-    protected static ApplicationManager app = new ApplicationManager(); // ссылка на app, через кот тесты связываются с хелперами
+    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName())); // ссылка на app, через кот тесты связываются с хелперами
 
     Logger logger = LoggerFactory.getLogger(TestBase.class); // подключение логгера
 

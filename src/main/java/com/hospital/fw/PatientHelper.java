@@ -19,7 +19,7 @@ public class PatientHelper extends BaseHelper {
     }
 
     public void isModalFindPatientPresent() {
-        assertTrueElement(By.xpath("//h3[contains(.,'Wählen Sie einen Patient aus')]"));
+        assertTrueElement(By.xpath("//h3[contains(.,'Sie einen Patient aus')]"));
     }
 
     public void isFoundPatientsPresent() {
@@ -43,7 +43,7 @@ public class PatientHelper extends BaseHelper {
     }
 
     public void clickOnSelectButton() {
-        click(By.xpath("//p[contains(.,'Wählen')]"));
+        click(By.xpath("//p[contains(.,'hlen')]"));
     }
 
     public void clickOnNewRequstButton() {
@@ -51,7 +51,7 @@ public class PatientHelper extends BaseHelper {
     }
 
     public void clickOnFindPatientButton() {
-        click(By.xpath("//button[contains(.,'Wählen Sie einen Patient aus')]"));
+        click(By.xpath("//button[contains(.,'Sie einen Patient aus')]"));
     }
 
     public void clickOnFindButton() {
